@@ -1,17 +1,221 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Vizualy.Studio">
+	<main class="bg-slate-950 text-white">
+		<section class="relative min-h-screen overflow-hidden">
+			<img
+				src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1800&q=80"
+				alt="Fotógrafo trabajando en una sesión editorial"
+				class="absolute inset-0 h-full w-full object-cover"
+				loading="eager"
+				draggable="false"
+			/>
+			<div class="absolute inset-0 bg-linear-to-b from-black/35 via-black/40 to-slate-950"></div>
+
+			<header class="absolute left-0 right-0 top-0 z-20">
+				<div class="mx-auto grid max-w-7xl grid-cols-1 items-center px-6 py-6 sm:px-10 lg:grid-cols-[1fr_auto_1fr] lg:px-12">
+					<nav class="hidden items-center gap-10 text-sm text-white/80 lg:flex lg:justify-self-end lg:pr-12">
+						<a href="#trabajos" class="transition hover:text-white">Fotografías</a>
+						<a href="#estudio" class="transition hover:text-white">Videos</a>
+					</nav>
+					<a href="#inicio" class="mx-auto text-sm font-semibold uppercase tracking-[0.45em] text-white/95 transition hover:text-white lg:justify-self-center">Vizualy</a>
+					<nav class="hidden items-center gap-10 text-sm text-white/80 lg:flex lg:justify-self-start lg:pl-12">
+						<a href="#servicios" class="transition hover:text-white">Conocer tarifas</a>
+						<a href="#contacto" class="transition hover:text-white">Preguntas frecuentes</a>
+					</nav>
+				</div>
+			</header>
+
+			<div id="inicio" class="relative z-10 mx-auto flex min-h-screen max-w-7xl items-end px-6 py-12 sm:px-10 sm:py-16 lg:px-12">
+				<div class="max-w-3xl">
+					<p class="text-xs font-semibold uppercase tracking-[0.5em] text-white/70">Fotógrafos y Filmakers</p>
+					<h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-7xl lg:text-7xl">
+						Creamos recuerdos que no se olvidan, se reviven.
+					</h1>
+					<p class="mt-6 max-w-2xl text-base leading-8 text-white/80 sm:text-lg">
+						Vizualy.studio creamos contenido visual para marcas, bodas y experiencias: Fotografía y video con intención, estética y emoción.
+					</p>
+					<div class="mt-10 flex flex-wrap gap-4">
+						<a href="#trabajos" class="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90">Ver trabajos</a>
+						<a href="#contacto" class="rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15">Hablemos</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="mx-auto max-w-7xl px-6 py-24 sm:px-10 lg:px-12">
+			<div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+				<div class="lg:col-span-5">
+					<div class="aspect-4/5 overflow-hidden rounded-4xl border border-white/10 bg-white/5 shadow-2xl shadow-black/30">
+						<img
+							src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80"
+							alt="El equipo de Vizualy"
+							class="h-full w-full object-cover"
+							loading="lazy"
+							draggable="false"
+						/>
+					</div>
+				</div>
+				<div class="lg:col-span-7 lg:pl-8">
+					<p class="text-xs font-semibold uppercase tracking-[0.45em] text-white/45">Sobre nosotros</p>
+					<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">Fotógrafos que construyen identidad visual con calma, criterio y detalle.</h2>
+					<p class="mt-6 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
+						En Vizualy acompañamos a marcas y personas que necesitan imágenes con una presencia clara, estética cuidada y un lenguaje coherente en toda su comunicación.
+					</p>
+					<p class="mt-5 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
+						Nuestro trabajo combina dirección de arte, fotografía y edición para que cada entrega se sienta editorial, humana y atemporal.
+					</p>
+					<div class="mt-8 grid gap-4 sm:grid-cols-3">
+						<div class="rounded-3xl border border-white/10 bg-white/5 p-5">
+							<p class="text-sm font-semibold text-white">Dirección</p>
+							<p class="mt-2 text-sm leading-6 text-white/60">Alineamos la sesión con la identidad de cada cliente.</p>
+						</div>
+						<div class="rounded-3xl border border-white/10 bg-white/5 p-5">
+							<p class="text-sm font-semibold text-white">Estética</p>
+							<p class="mt-2 text-sm leading-6 text-white/60">Buscamos una imagen limpia, elegante y memorable.</p>
+						</div>
+						<div class="rounded-3xl border border-white/10 bg-white/5 p-5">
+							<p class="text-sm font-semibold text-white">Entrega</p>
+							<p class="mt-2 text-sm leading-6 text-white/60">Pensamos en web, redes y campañas desde el inicio.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="trabajos" class="mx-auto max-w-7xl px-6 pt-24 pb-6 sm:px-10 lg:px-12">
+			<div class="flex items-end justify-between gap-8 border-b border-white/10 pb-8">
+				<div>
+					<p class="text-xs font-semibold uppercase tracking-[0.45em] text-white/45">Trabajos recientes</p>
+					<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">Las fotografías de tus sueños.</h2>
+				</div>
+				<p class="hidden max-w-xl text-sm leading-7 text-white/55 md:block">
+					Cada fotografía se diseña para que la dirección de arte, la composición y el color trabajen juntas.
+				</p>
+			</div>
+
+			<div class="mt-10 grid gap-6 lg:grid-cols-12">
+				<article class="group relative h-85 overflow-hidden rounded-4xl lg:col-span-7 lg:h-105">
+					<img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1600&q=80" alt="Sesión fotográfica de moda" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+					<div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent"></div>
+					<div class="absolute bottom-0 left-0 right-0 p-8">
+						<p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Boda / Ráquira</p>
+						<h3 class="mt-3 text-2xl font-semibold">"La mejor de las experiencias"</h3>
+					</div>
+				</article>
+				<article class="group relative h-85 overflow-hidden rounded-4xl lg:col-span-5 lg:h-105">
+					<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80" alt="Retrato creativo en estudio" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+					<div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent"></div>
+					<div class="absolute bottom-0 left-0 right-0 p-8">
+						<p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Bautizo / Duitama</p>
+						<h3 class="mt-3 text-2xl font-semibold">"Las fotos son excelentes"</h3>
+					</div>
+				</article>
+				<div class="lg:col-span-12 mt-8 flex justify-end">
+					<a href="/trabajos" class="inline-flex items-center px-12 py-2 text-sm font-semibold text-white/45 transition hover:underline">Ver todas las fotos --></a>
+				</div>
+			</div>
+		</section>
+
+		<section id="videos" class="mx-auto mb-12 max-w-7xl px-6 sm:px-10 lg:px-12">
+			<div class="flex items-end justify-between gap-8 border-b border-white/10 pb-8">
+				<div>
+					<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">Los videos que tanto quisiste.</h2>
+				</div>
+				<p class="hidden max-w-xl text-sm leading-7 text-white/55 md:block">
+					Cada vídeo tiene una dirección y alma para sentir el momento.
+				</p>
+			</div>
+
+			<div class="mt-10 grid gap-6 lg:grid-cols-12">
+				<article class="group relative h-85 overflow-hidden rounded-4xl lg:col-span-5 lg:h-105">
+					<img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1600&q=80" alt="Sesión fotográfica de moda" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+					<div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent"></div>
+					<div class="absolute bottom-0 left-0 right-0 p-8">
+						<p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Boda / Ráquira</p>
+						<h3 class="mt-3 text-2xl font-semibold">"Maravilloso ambiente."</h3>
+					</div>
+				</article>
+				<article class="group relative h-85 overflow-hidden rounded-4xl lg:col-span-7 lg:h-105">
+					<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80" alt="Retrato creativo en estudio" class="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+					<div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent"></div>
+					<div class="absolute bottom-0 left-0 right-0 p-8">
+						<p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Bautizo / Duitama</p>
+						<h3 class="mt-3 text-2xl font-semibold">"Muy buen video, siguieron todas las indicaciones."</h3>
+					</div>
+				</article>
+				<div class="lg:col-span-12 mt-8 flex justify-end">
+					<a href="/videos" class="inline-flex items-center px-12 py-2 text-sm font-semibold text-white/45 transition hover:underline">Ver todos los videos --></a>
+				</div>
+			</div>
+		</section>
+
+		<section id="preguntas-frecuentes" class="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-12">
+			<div class="flex items-end justify-between gap-8 border-b border-white/10 pb-8">
+				<div>
+					<p class="text-xs font-semibold uppercase tracking-[0.45em] text-white/45">Preguntas frecuentes</p>
+					<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">Lo que suelen preguntar antes de reservar.</h2>
+				</div>
+				<p class="hidden max-w-xl text-sm leading-7 text-white/55 md:block">
+					Respuestas claras para resolver rápido dudas sobre tiempos, entregas y forma de trabajo.
+				</p>
+			</div>
+
+			<div class="mt-10 grid gap-4">
+				<details class="group rounded-4xl border border-white/10 bg-white/5 p-6">
+					<summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
+						<span>¿Con cuánta anticipación debemos reservar?</span>
+						<span class="text-white/45 transition group-open:rotate-45">+</span>
+					</summary>
+					<p class="mt-4 max-w-3xl text-sm leading-7 text-white/65">
+						Idealmente con varias semanas de anticipación, especialmente si es una boda o una producción con fecha fija. Así podemos organizar mejor la preproducción y asegurar disponibilidad.
+					</p>
+				</details>
+
+				<details class="group rounded-4xl border border-white/10 bg-white/5 p-6">
+					<summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
+						<span>¿Entregan fotografías y video editados?</span>
+						<span class="text-white/45 transition group-open:rotate-45">+</span>
+					</summary>
+					<p class="mt-4 max-w-3xl text-sm leading-7 text-white/65">
+						Sí. Entregamos el material seleccionado y editado según el tipo de proyecto, con un acabado coherente con la estética de Visually.
+					</p>
+				</details>
+
+				<details class="group rounded-4xl border border-white/10 bg-white/5 p-6">
+					<summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
+						<span>¿Trabajan solo en bodas?</span>
+						<span class="text-white/45 transition group-open:rotate-45">+</span>
+					</summary>
+					<p class="mt-4 max-w-3xl text-sm leading-7 text-white/65">
+						No. También hacemos retratos, campañas, contenido para marcas y piezas pensadas para web o redes.
+					</p>
+				</details>
+
+				<details class="group rounded-4xl border border-white/10 bg-white/5 p-6">
+					<summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
+						<span>¿Pueden ayudarnos a definir la dirección visual?</span>
+						<span class="text-white/45 transition group-open:rotate-45">+</span>
+					</summary>
+					<p class="mt-4 max-w-3xl text-sm leading-7 text-white/65">
+						Sí. De hecho, parte del proceso es definir la estética, el mood y el ritmo visual para que todo quede alineado antes de disparar.
+					</p>
+				</details>
+			</div>
+		</section>
+
+		<section id="contacto" class="mx-auto max-w-7xl px-6 pb-24 sm:px-10 lg:px-12">
+			<div class="rounded-4xl border border-white/10 bg-linear-to-br from-white/10 to-white/3 p-10 sm:p-14">
+				<p class="text-xs font-semibold uppercase tracking-[0.45em] text-white/45">Contacto</p>
+				<div class="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+					<div class="max-w-2xl">
+						<h2 class="text-3xl font-semibold tracking-tight sm:text-5xl">Si tienes alguna idea en mente, ya sabes a quién contactar.</h2>
+					</div>
+					<a href="mailto:hola@visually.studio" class="inline-flex w-fit rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90">hola@visually.studio</a>
+				</div>
+			</div>
+		</section>
+	</main>
+</BaseLayout>
