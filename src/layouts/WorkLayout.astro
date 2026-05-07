@@ -1,0 +1,107 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  heroImage: string;
+  heroAlt: string;
+  heroText: string;
+  heroSubtext?: string;
+}
+
+const { title, heroImage, heroAlt, heroText, heroSubtext } = Astro.props;
+---
+
+<BaseLayout title={title}>
+	<main class="bg-slate-950 text-white">
+		<section class="relative min-h-screen overflow-hidden">
+			<img
+				src={heroImage}
+				alt={heroAlt}
+				class="absolute inset-0 h-full w-full object-cover"
+				loading="eager"
+				draggable="false"
+			/>
+			<div class="absolute inset-0 bg-linear-to-b from-black/35 via-black/40 to-slate-950"></div>
+
+			<header class="absolute left-0 right-0 top-0 z-20">
+				<div class="mx-auto grid max-w-7xl grid-cols-1 items-center px-6 py-6 sm:px-10 lg:grid-cols-[1fr_auto_1fr] lg:px-12">
+					<button
+						id="mobile-menu-btn"
+						class="lg:hidden flex items-center justify-start"
+						aria-label="Abrir menú"
+						onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+					>
+						<svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+						</svg>
+					</button>
+					<nav class="hidden items-center gap-10 text-sm text-white/80 lg:flex lg:justify-self-end lg:pr-12">
+						<div class="group relative">
+							<button class="transition hover:text-white flex items-center gap-1">
+								Fotografías
+								<svg class="w-4 h-4 transition group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+								</svg>
+							</button>
+							<div class="absolute left-0 mt-0 w-48 bg-slate-900/95 border border-white/10 rounded-lg shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50">
+								<a href="/trabajos/bodas" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition">Bodas</a>
+								<a href="/trabajos/quinceanos" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition">Quinceaños</a>
+								<a href="/trabajos/bautizos" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition">Bautizos</a>
+								<a href="/trabajos/empresariales" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition">Empresariales</a>
+								<a href="/trabajos/sesiones" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition">Sesiones de fotos</a>
+							</div>
+						</div>
+						<a href="/#videos" class="transition hover:text-white">Videos</a>
+					</nav>
+					<a href="/" class="mx-auto text-sm font-semibold uppercase tracking-[0.45em] text-white/95 transition hover:text-white lg:justify-self-center">Vizualy</a>
+					<nav class="hidden items-center gap-10 text-sm text-white/80 lg:flex lg:justify-self-start lg:pl-12">
+						<a href="https://wa.me/573209383582?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="transition hover:text-white">Conocer tarifas</a>
+						<a href="/#preguntas-frecuentes" class="transition hover:text-white">Preguntas frecuentes</a>
+					</nav>
+				</div>
+				<nav
+					id="mobile-menu"
+					class="hidden lg:hidden bg-black/95 border-t border-white/10 px-6 py-4 sm:px-10 space-y-3"
+				>
+					<div class="space-y-2">
+						<button
+							id="mobile-fotos-toggle"
+							class="w-full text-left block text-sm text-white/80 transition hover:text-white py-2 flex items-center justify-between"
+							onclick="document.getElementById('mobile-fotos-submenu').classList.toggle('hidden'); document.getElementById('mobile-fotos-icon').classList.toggle('rotate-180')"
+						>
+							Fotografías
+							<svg class="w-4 h-4 transition" id="mobile-fotos-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+							</svg>
+						</button>
+						<div id="mobile-fotos-submenu" class="hidden space-y-1 pl-4 border-l border-white/10">
+							<a href="/trabajos/bodas" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Bodas</a>
+							<a href="/trabajos/quinceanos" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Quinceaños</a>
+							<a href="/trabajos/bautizos" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Bautizos</a>
+							<a href="/trabajos/empresariales" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Empresariales</a>
+							<a href="/trabajos/sesiones" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Sesiones de fotos</a>
+						</div>
+					</div>
+					<a href="/#videos" class="block text-sm text-white/80 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Videos</a>
+					<a href="https://wa.me/573209383582?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="block text-sm text-white/80 transition hover:text-white py-2">Conocer tarifas</a>
+					<a href="/#preguntas-frecuentes" class="block text-sm text-white/80 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Preguntas frecuentes</a>
+				</nav>
+			</header>
+
+			<!-- Texto del Hero -->
+			<div class="relative z-10 mx-auto flex min-h-screen max-w-7xl items-end px-6 py-12 sm:px-10 sm:py-16 lg:px-12">
+				<div class="max-w-3xl">
+					<p class="text-xs font-semibold uppercase tracking-[0.5em] text-white/70">Nuestros trabajos</p>
+					<h1 class="mt-6 text-4xl font-black tracking-tight text-white sm:text-7xl lg:text-7xl">
+						{heroText}
+					</h1>
+					{heroSubtext && <p class="mt-6 max-w-2xl text-base leading-8 text-white/80 sm:text-lg">{heroSubtext}</p>}
+				</div>
+			</div>
+		</section>
+
+		<!-- Contenido -->
+		<slot />
+	</main>
+</BaseLayout>

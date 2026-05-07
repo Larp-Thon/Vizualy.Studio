@@ -1,0 +1,66 @@
+---
+import WorkLayout from '../../layouts/WorkLayout.astro';
+
+const images = import.meta.glob('/public/bodas/*.webp', { eager: true });
+const bodaImages = Object.entries(images)
+  .map(([path, module]) => {
+    const filename = path.split('/').pop();
+    return {
+      src: `/bodas/${filename}`,
+      alt: filename.replace('.webp', ''),
+    };
+  })
+  .sort((a, b) => a.alt.localeCompare(b.alt, 'es'));
+---
+
+<WorkLayout
+  title="Bodas - Vizualy.Studio"
+  heroImage="/bodas/BODA1.webp"
+  heroAlt="Sesión de boda"
+  heroText="Bodas"
+  heroSubtext="Cada boda es un viaje emocional único. Nuestro trabajo es capturar esos momentos que definen tu día: la complicidad, la alegría, la ternura. Fotos que trascienden el tiempo."
+>
+  <!-- Galería de Imágenes -->
+  <section class="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-12">
+    <div class="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      {bodaImages.map((img, index) => (
+        <div
+          class="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 aspect-square"
+          data-index={index}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-12 border-t border-white/10">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">¿Te gustaría que capturemos tu momento?</h2>
+      <p class="mt-4 text-white/60 max-w-2xl mx-auto">Hablemos sobre tu visión y hagamos que tu día sea inolvidable.</p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+        <a
+          href="https://wa.me/573209383582?text=Hola%2C%20me%20interes%C3%B3%20en%20los%20servicios%20para%20bodas"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full bg-white px-8 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90"
+        >
+          Hablemos por WhatsApp
+        </a>
+        <a
+          href="/"
+          class="rounded-full border border-white/25 bg-white/10 px-8 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
+        >
+          Volver al inicio
+        </a>
+      </div>
+    </div>
+  </section>
+</WorkLayout>

@@ -1,0 +1,72 @@
+---
+import WorkLayout from '../../layouts/WorkLayout.astro';
+
+const images = import.meta.glob('/public/quinceanos/*.webp', { eager: true });
+const images_list = Object.entries(images)
+  .map(([path, module]) => {
+    const filename = path.split('/').pop();
+    return {
+      src: `/quinceanos/${filename}`,
+      alt: filename.replace('.webp', ''),
+    };
+  })
+  .sort((a, b) => a.alt.localeCompare(b.alt, 'es'));
+---
+
+<WorkLayout
+  title="Quinceaños - Vizualy.Studio"
+  heroImage="https://images.unsplash.com/photo-1519886557338-dae6d09cade9?auto=format&fit=crop&w=1800&q=80"
+  heroAlt="Sesión de quinceaños"
+  heroText="Quinceaños"
+  heroSubtext="El día más especial de una joven. Capturamos la esencia, la alegría y la belleza de este hito inolvidable. Cada foto es una ventana a la magia de este momento único."
+>
+  <!-- Galería de Imágenes -->
+  <section class="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-12">
+    {images_list.length > 0 ? (
+      <div class="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {images_list.map((img, index) => (
+          <div
+            class="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 aspect-square"
+            data-index={index}
+          >
+            <img
+              src={img.src}
+              alt={img.alt}
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-20">
+        <p class="text-white/60">Galería en construcción. Pronto compartiremos nuestros trabajos.</p>
+      </div>
+    )}
+  </section>
+
+  <!-- CTA Final -->
+  <section class="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-12 border-t border-white/10">
+    <div class="text-center">
+      <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">¿Es tu quinceaños?</h2>
+      <p class="mt-4 text-white/60 max-w-2xl mx-auto">Hagamos que tu día sea tan especial como lo mereces. Déjanos capturar cada momento mágico.</p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+        <a
+          href="https://wa.me/573209383582?text=Hola%2C%20me%20interes%C3%B3%20en%20los%20servicios%20para%20quincea%C3%B1os"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full bg-white px-8 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90"
+        >
+          Hablemos por WhatsApp
+        </a>
+        <a
+          href="/"
+          class="rounded-full border border-white/25 bg-white/10 px-8 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/15"
+        >
+          Volver al inicio
+        </a>
+      </div>
+    </div>
+  </section>
+</WorkLayout>
