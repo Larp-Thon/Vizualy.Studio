@@ -1,13 +1,13 @@
 ---
 import WorkLayout from '../../layouts/WorkLayout.astro';
 
-const images = import.meta.glob('/public/sesiones/*.webp', { eager: true });
+const images = import.meta.glob('/public/sesiones/*.{jpg,JPG,webp}', { eager: true });
 const images_list = Object.entries(images)
   .map(([path, module]) => {
-    const filename = path.split('/').pop();
+    const filename = path.split('/').pop()  || '';
     return {
       src: `/sesiones/${filename}`,
-      alt: filename.replace('.webp', ''),
+      alt: filename.replace(/\.(jpg|JPG|webp)$/i, ''),
     };
   })
   .sort((a, b) => a.alt.localeCompare(b.alt, 'es'));
@@ -21,22 +21,29 @@ const images_list = Object.entries(images)
   heroSubtext="Momentos únicos, capturados con intención. Desde retratos personales hasta shoots temáticos, cada sesión es una colaboración creativa."
 >
   <!-- Galería de Imágenes -->
-  <section class="mx-auto max-w-7xl px-6 py-20 sm:px-10 lg:px-12">
+  <section class="mx-auto max-w-8xl px-4 py-20 sm:px-6 lg:px-8">
     {images_list.length > 0 ? (
-      <div class="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5" style="column-gap:0.5rem">
         {images_list.map((img, index) => (
-          <div
-            class="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 aspect-square"
+          <button
+            type="button"
+            class="group relative mb-3 block w-full cursor-zoom-in overflow-hidden rounded-2xl bg-white/5 text-left outline-none ring-0 transition focus-visible:ring-2 focus-visible:ring-white/70"
+            style="break-inside: avoid; -webkit-column-break-inside: avoid; page-break-inside: avoid;"
             data-index={index}
+            data-reveal-item
+            data-lightbox-src={img.src}
+            data-lightbox-alt={img.alt}
+            aria-label={`Abrir imagen ${img.alt}`}
           >
             <img
               src={img.src}
               alt={img.alt}
-              class="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+              class="w-full h-auto rounded-2xl object-cover transition duration-500 group-hover:scale-110"
               loading="lazy"
+              decoding="async"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
-          </div>
+            <div class="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+          </button>
         ))}
       </div>
     ) : (
