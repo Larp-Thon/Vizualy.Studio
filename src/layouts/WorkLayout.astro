@@ -7,21 +7,35 @@ interface Props {
   heroAlt: string;
   heroText: string;
   heroSubtext?: string;
+	heroVideo?: string;
 }
 
-const { title, heroImage, heroAlt, heroText, heroSubtext } = Astro.props;
+const { title, heroImage, heroAlt, heroText, heroSubtext, heroVideo } = Astro.props;
 ---
 
 <BaseLayout title={title}>
 	<main class="bg-slate-950 text-white">
 		<section class="relative min-h-screen overflow-hidden">
-			<img
-				src={heroImage}
-				alt={heroAlt}
-				class="absolute inset-0 h-full w-full object-cover"
-				loading="eager"
-				draggable="false"
-			/>
+			{heroVideo ? (
+				<video
+					src={heroVideo}
+					class="absolute inset-0 h-full w-full object-cover"
+					autoplay
+					loop
+					muted
+					playsinline
+					preload="metadata"
+					aria-label={heroAlt}
+				></video>
+			) : (
+				<img
+					src={heroImage}
+					alt={heroAlt}
+					class="absolute inset-0 h-full w-full object-cover"
+					loading="eager"
+					draggable="false"
+				/>
+			)}
 			<div class="absolute inset-0 bg-linear-to-b from-black/35 via-black/40 to-slate-950"></div>
 
 			<header class="absolute left-0 right-0 top-0 z-20">
@@ -51,9 +65,11 @@ const { title, heroImage, heroAlt, heroText, heroSubtext } = Astro.props;
 								<a href="/trabajos/sesiones" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition">Sesiones de fotos</a>
 							</div>
 						</div>
-						<a href="/#videos" class="transition hover:text-white">Videos</a>
+						<a href="/videos" class="transition hover:text-white">Videos</a>
 					</nav>
-					<a href="/" class="mx-auto text-sm font-semibold uppercase tracking-[0.45em] text-white/95 transition hover:text-white lg:justify-self-center">Vizualy</a>
+					<a href="/" class="mx-auto inline-flex h-14 items-center transition hover:opacity-90 lg:justify-self-center sm:h-16" aria-label="Ir al inicio">
+						<img src="/logo.png" alt="Vizualy" class="h-full w-auto max-w-none" loading="eager" draggable="false" />
+					</a>
 					<nav class="hidden items-center gap-10 text-sm text-white/80 lg:flex lg:justify-self-start lg:pl-12">
 						<a href="https://wa.me/573209383582?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="transition hover:text-white">Conocer tarifas</a>
 						<a href="/#preguntas-frecuentes" class="transition hover:text-white">Preguntas frecuentes</a>
@@ -76,13 +92,12 @@ const { title, heroImage, heroAlt, heroText, heroSubtext } = Astro.props;
 						</button>
 						<div id="mobile-fotos-submenu" class="hidden space-y-1 pl-4 border-l border-white/10">
 							<a href="/trabajos/bodas" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Bodas</a>
-							<a href="/trabajos/quinceanos" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Quinceaños</a>
-							<a href="/trabajos/bautizos" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Bautizos</a>
+							<a href="/trabajos/eventos" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Eventos</a>
 							<a href="/trabajos/empresariales" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Empresariales</a>
 							<a href="/trabajos/sesiones" class="block text-sm text-white/60 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Sesiones de fotos</a>
 						</div>
 					</div>
-					<a href="/#videos" class="block text-sm text-white/80 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Videos</a>
+					<a href="/videos" class="block text-sm text-white/80 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Videos</a>
 					<a href="https://wa.me/573209383582?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="block text-sm text-white/80 transition hover:text-white py-2">Conocer tarifas</a>
 					<a href="/#preguntas-frecuentes" class="block text-sm text-white/80 transition hover:text-white py-2" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Preguntas frecuentes</a>
 				</nav>

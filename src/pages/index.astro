@@ -1,5 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const businessLogoEntries = import.meta.glob('/public/empresas/*.{jpg,JPG,jpeg,JPEG,png,PNG,webp,WEBP}', { eager: true });
+
+const businessLogos = Object.keys(businessLogoEntries)
+	.map((path) => {
+		const filename = path.split('/').pop() || '';
+
+		return {
+			src: path.replace('/public', ''),
+			alt: filename.replace(/\.[^.]+$/, '').replace(/[_.-]+/g, ' ').trim(),
+		};
+	})
+	.sort((a, b) => a.alt.localeCompare(b.alt, 'es'));
 ---
 
 <BaseLayout title="Vizualy.Studio">
@@ -41,9 +54,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 								<a href="/trabajos/sesiones" class="block px-4 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition">Sesiones de fotos</a>
 							</div>
 						</div>
-						<a href="#videos" class="transition hover:text-white">Videos</a>
+						<a href="/videos" class="transition hover:text-white">Videos</a>
 					</nav>
-					<a href="#inicio" class="mx-auto text-sm font-semibold uppercase tracking-[0.45em] text-white/95 transition hover:text-white lg:justify-self-center">Vizualy</a>
+					<a href="#inicio" class="mx-auto inline-flex h-14 items-center transition hover:opacity-90 lg:justify-self-center sm:h-16" aria-label="Ir al inicio">
+						<img src="/logo.png" alt="Vizualy" class="h-full w-auto max-w-none" loading="eager" draggable="false" />
+					</a>
 					<nav class="hidden items-center gap-10 text-sm text-white/80 lg:flex lg:justify-self-start lg:pl-12">
 						<a href="https://wa.me/573209383582?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="transition hover:text-white">Conocer tarifas</a>
 						<a href="#preguntas-frecuentes" class="transition hover:text-white">Preguntas frecuentes</a>
@@ -73,18 +88,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 							Bodas
 						</a>
 						<a
-							href="/trabajos/quinceanos"
+							href="/trabajos/eventos"
 							class="block text-sm text-white/60 transition hover:text-white py-2"
 							onclick="document.getElementById('mobile-menu').classList.add('hidden')"
 						>
-							Quinceaños
-						</a>
-						<a
-							href="/trabajos/bautizos"
-							class="block text-sm text-white/60 transition hover:text-white py-2"
-							onclick="document.getElementById('mobile-menu').classList.add('hidden')"
-						>
-							Bautizos
+							Eventos
 						</a>
 						<a
 							href="/trabajos/empresariales"
@@ -103,7 +111,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					</div>
 				</div>
 				<a
-					href="#videos"
+					href="/videos"
 					class="block text-sm text-white/80 transition hover:text-white py-2"
 					onclick="document.getElementById('mobile-menu').classList.add('hidden')"
 				>
@@ -149,7 +157,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 				<div class="lg:col-span-5">
 					<div class="aspect-4/5 overflow-hidden rounded-4xl border border-white/10 bg-white/5 shadow-2xl shadow-black/30">
 						<img
-							src="public/equipo/IMG_7790.webp"
+							src="/equipo/IMG_7790.webp"
 							alt="El equipo de Vizualy"
 							class="h-full w-full object-cover"
 							loading="lazy"
@@ -161,28 +169,43 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					<p class="text-xs font-semibold uppercase tracking-[0.45em] text-white/45">Sobre nosotros</p>
 					<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">Fotógrafos que construyen identidad visual con calma, criterio y detalle.</h2>
 					<p class="mt-6 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
-						En Vizualy acompañamos a marcas y personas que necesitan imágenes con una presencia clara, estética cuidada y un lenguaje coherente en toda su comunicación.
+						En Vizualy Studio trabajamos en proyectos comerciales, contenido para redes sociales, eventos corporativos y celebraciones especiales como bodas, quince años, bautizos y aniversarios.
 					</p>
 					<p class="mt-5 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
-						Nuestro trabajo combina dirección de arte, fotografía y edición para que cada entrega se sienta editorial, humana y atemporal.
+						Combinamos creatividad, técnica y atención al detalle para entregar resultados auténticos y memorables.
 					</p>
 					<div class="mt-8 grid gap-4 sm:grid-cols-3">
 						<div class="rounded-3xl border border-white/10 bg-white/5 p-5">
-							<p class="text-sm font-semibold text-white">Dirección</p>
-							<p class="mt-2 text-sm leading-6 text-white/60">Alineamos la sesión con la identidad de cada cliente.</p>
+							<p class="text-sm font-semibold text-white">Fotografía</p>
+							<p class="mt-2 text-sm leading-6 text-white/60">Capturamos imágenes que reflejan emociones, identidad y profesionalismo para personas, marcas y empresas</p>
 						</div>
 						<div class="rounded-3xl border border-white/10 bg-white/5 p-5">
-							<p class="text-sm font-semibold text-white">Estética</p>
-							<p class="mt-2 text-sm leading-6 text-white/60">Buscamos una imagen limpia, elegante y memorable.</p>
+							<p class="text-sm font-semibold text-white">Producción Audiovisual</p>
+							<p class="mt-2 text-sm leading-6 text-white/60">Creamos videos con narrativa, estética y propósito para promocionar productos, servicios y momentos especiales.</p>
 						</div>
 						<div class="rounded-3xl border border-white/10 bg-white/5 p-5">
-							<p class="text-sm font-semibold text-white">Entrega</p>
-							<p class="mt-2 text-sm leading-6 text-white/60">Pensamos en el cliente o la campaña y valoramos su tiempo desde el inicio.</p>
+							<p class="text-sm font-semibold text-white">Experiencia</p>
+							<p class="mt-2 text-sm leading-6 text-white/60">Acompañamos cada proyecto de principio a fin, garantizando una experiencia cercana, organizada y enfocada en resultados.</p>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</section>
+
+		{businessLogos.length > 0 && (
+			<section class="mx-auto mb-12 max-w-[100vw] overflow-hidden px-0 sm:px-0 lg:px-0" aria-label="Logos de empresas">
+				<div class="brand-showcase">
+					<div class="brand-showcase-row">
+						{[...businessLogos, ...businessLogos].map((logo) => (
+							<div class="brand-showcase-item">
+								<img src={logo.src} alt={logo.alt || 'Logo de empresa'} loading="lazy" decoding="async" class="brand-showcase-image" draggable="false" />
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+		)}
 
 		<section id="trabajos" class="mx-auto max-w-7xl px-6 pt-24 pb-6 sm:px-10 lg:px-12">
 			<div class="flex items-end justify-between gap-8 border-b border-white/10 pb-8">
@@ -221,7 +244,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		<section id="videos" class="mx-auto mb-12 max-w-7xl px-6 sm:px-10 lg:px-12">
 			<div class="flex items-end justify-between gap-8 border-b border-white/10 pb-8">
 				<div>
-					<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">Los videos que tanto quisiste.</h2>
+					<h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">Producciones que reflejan la esencia de cada historia.</h2>
 				</div>
 				<p class="hidden max-w-xl text-sm leading-7 text-white/55 md:block">
 					Cada vídeo tiene una dirección y alma para sentir el momento.
@@ -230,35 +253,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 			<div class="mt-10 grid gap-6 lg:grid-cols-12">
 				<article class="group relative h-85 overflow-hidden rounded-4xl lg:col-span-5 lg:h-105">
-					<iframe
-						class="absolute left-1/2 top-1/2 h-full w-[177.78%] -translate-x-1/2 -translate-y-1/2 transition duration-700 group-hover:scale-105"
-						src="https://www.youtube.com/embed/MVLwNOnMs9c?autoplay=1&mute=1&loop=1&playlist=MVLwNOnMs9c&controls=0&modestbranding=1&rel=0&playsinline=1&fs=0&disablekb=1&iv_load_policy=3"
-						title="Video de boda en exteriores"
-						loading="lazy"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-						referrerpolicy="strict-origin-when-cross-origin"
-						allowfullscreen
-					></iframe>
+					<video
+						class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+						autoplay
+						loop
+						muted
+						playsinline
+						preload="metadata"
+						aria-label="Video de boda en exteriores"
+					>
+						<source src={encodeURI('/videos/Vivian & Dan Reel.mp4')} type="video/mp4" />
+					</video>
 					<div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent"></div>
 					<div class="absolute bottom-0 left-0 right-0 p-8">
-						<p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Boda / Ráquira</p>
-						<h3 class="mt-3 text-2xl font-semibold">"Maravilloso ambiente."</h3>
+						<p class="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">Boda</p>
+						<h3 class="mt-3 text-2xl font-semibold">Historias en movimiento.</h3>
 					</div>
 				</article>
 				<article class="group relative h-85 overflow-hidden rounded-4xl lg:col-span-7 lg:h-105">
-					<iframe
-						class="absolute left-1/2 top-1/2 h-full w-[177.78%] -translate-x-1/2 -translate-y-1/2 transition duration-700 group-hover:scale-105"
-						src="https://www.youtube.com/embed/IgfsWyWfzGM?autoplay=1&mute=1&loop=1&playlist=IgfsWyWfzGM&controls=0&modestbranding=1&rel=0&playsinline=1&fs=0&disablekb=1&iv_load_policy=3"
-						title="Video de boda en exteriores"
-						loading="lazy"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-						referrerpolicy="strict-origin-when-cross-origin"
-						allowfullscreen
-					></iframe>
+					<video
+						class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+						autoplay
+						loop
+						muted
+						playsinline
+						preload="metadata"
+						aria-label="Video empresarial"
+					>
+						<source src={encodeURI('/videos/Pollos El Dorado.mp4')} type="video/mp4" />
+					</video>
 					<div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent"></div>
 					<div class="absolute bottom-0 left-0 right-0 p-8">
-						<p class="text-xs font-semibold uppercase tracking-[0.4em] text-white/60">Bautizo / Duitama</p>
-						<h3 class="mt-3 text-2xl font-semibold">"Muy buen video, siguieron todas las indicaciones."</h3>
+						<p class="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">Contenido empresarial</p>
+						<h3 class="mt-3 text-2xl font-semibold">Contenido para marcas que destacan.</h3>
 					</div>
 				</article>
 				<div class="lg:col-span-12 mt-3 flex justify-end">
@@ -281,41 +308,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 			<div class="mt-10 grid gap-4">
 				<details class="group rounded-4xl border border-white/10 bg-white/5 p-6">
 					<summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
-						<span>¿Con cuánta anticipación debemos reservar?</span>
+						<span>¿Cómo se realiza el pago?</span>
 						<span class="text-white/45 transition group-open:rotate-45">+</span>
 					</summary>
 					<p class="mt-4 max-w-3xl text-sm leading-7 text-white/65">
-						Idealmente con varias semanas de anticipación, especialmente si es una boda o una producción con fecha fija. Así podemos organizar mejor la preproducción y asegurar disponibilidad.
+						Para reservar la fecha solicitamos un anticipo del 50% del valor total del servicio. El 50% restante se cancela al momento de la entrega del material final.
 					</p>
 				</details>
 
 				<details class="group rounded-4xl border border-white/10 bg-white/5 p-6">
 					<summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
-						<span>¿Entregan fotografías y video editados?</span>
+						<span>¿Cuánto tiempo tarda la entrega del material?</span>
 						<span class="text-white/45 transition group-open:rotate-45">+</span>
 					</summary>
 					<p class="mt-4 max-w-3xl text-sm leading-7 text-white/65">
-						Sí. Entregamos el material seleccionado y editado según el tipo de proyecto.
+						Los tiempos de entrega varían según el tipo de servicio contratado. Antes de cada proyecto informamos el plazo estimado para la entrega de fotografías y videos editados
 					</p>
 				</details>
 
 				<details class="group rounded-4xl border border-white/10 bg-white/5 p-6">
 					<summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
-						<span>¿Trabajan solo en bodas?</span>
+						<span>¿Puedo solicitar cambios adicionales después de recibir el material?</span>
 						<span class="text-white/45 transition group-open:rotate-45">+</span>
 					</summary>
 					<p class="mt-4 max-w-3xl text-sm leading-7 text-white/65">
-						No. También trabajamos en bautizos, campañas, contenido para marcas, quinceaños o redes.
+						Sí. Se pueden realizar ajustes menores dentro de un tiempo razonable después de la entrega. Solicitudes adicionales o cambios que impliquen una nueva edición podrán generar costos adicionales.
 					</p>
 				</details>
 
 				<details class="group rounded-4xl border border-white/10 bg-white/5 p-6">
 					<summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-white">
-						<span>¿Pueden ayudarnos a definir la dirección visual?</span>
+						<span>¿Cómo se entrega el material final?</span>
 						<span class="text-white/45 transition group-open:rotate-45">+</span>
 					</summary>
 					<p class="mt-4 max-w-3xl text-sm leading-7 text-white/65">
-						Sí. De hecho, parte del proceso es definir la estética, el mood y el ritmo visual para que todo quede alineado antes de tomar la foto.
+						Todo el material es previamente seleccionado y editado por nuestro equipo. La entrega incluye únicamente el contenido final que cumple con nuestros estándares de calidad y se realiza en formato digital.
 					</p>
 				</details>
 			</div>
@@ -328,7 +355,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					<div class="max-w-2xl">
 						<h2 class="text-3xl font-semibold tracking-tight sm:text-5xl">Si tienes alguna idea en mente, ya sabes a quién contactar.</h2>
 					</div>
-					<a href="mailto:hola@visually.studio" class="inline-flex w-fit rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90">hola@visually.studio</a>
+					<a href="mailto:vizualy.studio@gmail.com" class="inline-flex w-fit rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-white/90">vizualy.studio@gmail.com</a>
 				</div>
 			</div>
 		</section>
@@ -350,7 +377,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 						<p class="text-sm font-semibold text-white">Contacto</p>
 						<div class="mt-3 space-y-2 text-sm leading-7 text-white/65">
 							<a href="https://wa.me/573209383582?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" class="block transition hover:text-white">+57 320 938 3582</a>
-							<a href="mailto:hola@visually.studio" class="block transition hover:text-white">hola@visually.studio</a>
+							<a href="mailto:vizualy.studio@gmail.com" class="block transition hover:text-white">vizualy.studio@gmail.com</a>
 						</div>
 					</div>
 					<div>
@@ -370,3 +397,75 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		</footer>
 	</main>
 </BaseLayout>
+
+<style>
+	.brand-showcase {
+		position: relative;
+		padding: 1rem 0 0;
+	}
+
+	.brand-showcase::before,
+	.brand-showcase::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 2;
+	}
+
+	.brand-showcase-row {
+		display: flex;
+		padding: 1rem 0;
+		gap: 1rem;
+		width: max-content;
+		padding: 0.85rem 0;
+		animation: brand-slide 34s linear infinite;
+		will-change: transform;
+		position: relative;
+		z-index: 1;
+	}
+
+	.brand-showcase-row--right {
+		animation-direction: reverse;
+		animation-duration: 42s;
+	}
+
+	.brand-showcase-item {
+		animation: brand-slide 36s linear infinite;
+		width: 7.5rem;
+		height: 7.5rem;
+		border-radius: 9999px;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 1rem;
+		border: 1px solid rgba(255, 255, 255, 0.16);
+		box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+		backdrop-filter: blur(12px);
+	}
+
+	.brand-showcase-image {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+		filter: saturate(1.15) contrast(1.08);
+	}
+
+	@keyframes brand-slide {
+		from {
+			transform: translateX(0);
+		}
+
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.brand-showcase-row {
+			animation: none;
+			transform: translateX(0);
+		}
+	}
+</style>
